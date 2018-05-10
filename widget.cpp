@@ -22,10 +22,9 @@ Widget::Widget(QWidget *parent) :
     fz_document *doc;
     fz_pixmap *pix;
     fz_matrix ctm;
-    int x, y;
 
     //第一页为0
-    page_number=1;
+    page_number=0;
     //100%缩放比
     zoom=100;
     //旋转为0
@@ -98,9 +97,7 @@ Widget::Widget(QWidget *parent) :
        unsigned char *samples = pix->samples;
    int width = fz_pixmap_width(ctx, pix);
    int height = fz_pixmap_height(ctx, pix);
-
-   QImage image(samples, width, height,QImage::Format_RGB888);
-
+   QImage image(samples, width, height,3*width,QImage::Format_RGB888);
    QLabel *label=new QLabel;
    label->setPixmap(QPixmap::fromImage(image));
 
